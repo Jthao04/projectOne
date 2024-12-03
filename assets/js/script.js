@@ -1,6 +1,6 @@
 const deckObject = {
     cards: [],
-    numberOfDecks: 4,
+    numberOfDecks: 1,
     /*
        Create 
        fills the cards array with 52 cards times the number of decks.  

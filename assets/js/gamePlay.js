@@ -88,18 +88,42 @@ function dealersTurn(){
     }
 }
 
+
 function playersTurn(){
  
-    // TODO: Need some code here from our hit/stay buttons
-    //if(hit)
-    //while(hit && !player.score> 21)
-    //{
-        //card = drawCard();
-        //player.cards.push(card)
-        //addCardToScore(player)
-        //if player.score > 21 player busted
-    //} 
+const hitEl = document.querySelector('#hit');
+const stayEl = document.querySelector('#stay');
+
+// Attach event listener to hit button element
+hitEl.addEventListener('click', function () {
+    card = drawCard();
+    player.cards.push(card);
+    addCardToScore(player);
+});
+
+// Attach event listener to decrement button element
+stayEl.addEventListener('click', function () {
+    if(player.score<22){
+        dealersTurn()
+        if(dealer.score>=22){
+            //TODO: code for dealer busted goes here
+        }else{ 
+            if(player.score>dealer.score){
+                //TODO:code for player wins goes here
+            }else if(player.score<dealer.score){
+                 //TODO:code for dealer wins goes here
+            }
+            else{
+            //     //TODO: CODE FOR PUSH GOES HERE
+            }
+        }
+    } else{
+    //TODO: code for player busted goes here
+    }
+});
+  
 }
+
 
 function scoreBeginningDeal(gameOver){
     if(dealer.score==21 && dealer.cards[1].value ==0){
@@ -124,37 +148,17 @@ function playGame(){
     
     if(!gameOver){
         playersTurn();
-        if(player.score<22){
-            dealersTurn()
-            if(dealer.score>=22){
-                //TODO: code for dealer busted goes here
-            }else{ 
-                if(player.score>dealer.score){
-                    //TODO:code for player wins goes here
-                }else if(player.score<dealer.score){
-                     //TODO:code for dealer wins goes here
-                }
-                else{
-                //     //TODO: CODE FOR PUSH GOES HERE
-                }
-            }
-        } else{
-        //TODO: code for player busted goes here
-        }
     }    
 }
 
 
 function intitGame(){
     deck.create();
+    ui.init(player.cards, dealer.cards, deck.cards);
+    ui.start();
     
-    // do
-
        playGame();
-       clearHands();
-          
-    // while(keepPlaying);
-
+    
     // TODO:  This is where the code goes for when the player quits the game. 
     }
 
